@@ -13,10 +13,11 @@ def highest_rating_to_budget(df, gdf):
     fig, ax = plt.subplots(1)
     countries = merged.dissolve(by="name", aggfunc = "sum")
     countries.plot(column = "budget_to_score", legend = True, ax=ax, vmin=b_min, vmax=b_max)
+    plt.title('Rating to Budget Ratio by Country')
     plt.show()
 
 def main():
-    df = pd.read_csv(r"C:\Users\dswhi\OneDrive\Documents\UW Class Work\CSE 163\Final Project\Movies Dataset\movies.csv", encoding = 'ISO-8859-1')
+    df = pd.read_csv(r"C:\Users\koolk\Documents\UW Freshman Year\CSE 163 Python\movies\movies.csv", encoding='ISO-8859-1')
     df = df.drop(columns = 'released')
     gdf = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
     df.rename(columns = {'name' : 'Title'}, inplace = True)
