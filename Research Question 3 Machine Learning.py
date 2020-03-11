@@ -43,8 +43,8 @@ def user_rating_to_genre(df):
 def main():
     df = pd.read_csv(r"C:\Users\dswhi\OneDrive\Documents\UW Class Work\CSE 163\Final Project\Movies Dataset\movies.csv", encoding = 'ISO-8859-1')
     df = df.drop(columns = 'released')
-    #df = select_features(df)
-    #print(fit_and_predict_ratings(df, 'Action'))
+    df = select_features(df)
+    print(fit_and_predict_ratings(df, 'Action'))
     user_rating_to_genre(df)
 
 
