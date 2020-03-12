@@ -30,6 +30,15 @@ def fit_and_predict_ratings(df, genre):
     model = DecisionTreeRegressor()
     model.fit(X_train, y_train)
     y_test_pred = model.predict(X_test)
+    print(X)
+    # test cases
+    # defining some predictions
+    Xnew = [[50000000, 100, 500000, 2000], [6000000, 200, 50000, 2010]]
+    # make a prediction
+    ynew = model.predict(Xnew)
+    # show the inputs and predicted outputs
+    for i in range(len(Xnew)):
+        print("X=%s, Predicted=%s" % (Xnew[i], ynew[i]))
     return mean_squared_error(y_test, y_test_pred)
 
 def user_rating_to_genre(df):
@@ -41,7 +50,7 @@ def user_rating_to_genre(df):
     plt.show()
 
 def main():
-    df = pd.read_csv(r"C:\Users\dswhi\OneDrive\Documents\UW Class Work\CSE 163\Final Project\Movies Dataset\movies.csv", encoding = 'ISO-8859-1')
+    df = pd.read_csv("movies.csv", encoding='ISO-8859-1')
     df = df.drop(columns = 'released')
     df = select_features(df)
     print(fit_and_predict_ratings(df, 'Action'))
