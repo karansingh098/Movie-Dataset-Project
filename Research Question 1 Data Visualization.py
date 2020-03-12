@@ -36,6 +36,7 @@ def main():
         .replace('USA', 'United States of America')
     gdp_df = pd.read_csv("gdp_csv.csv")
     gdp_df = gdp_df.fillna(0)
+    # We replace names of countries that don't align with ones that do
     gdp_df['Country Name'] = gdp_df['Country Name'].str\
         .replace('United States', 'United States of America')
     gdp_df['Country Name'] = gdp_df['Country Name'].str\
