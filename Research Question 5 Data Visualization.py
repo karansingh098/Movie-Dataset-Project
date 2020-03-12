@@ -14,7 +14,7 @@ def highest_and_lowest_rated_genres_over_the_years(df):
 
 
 def main():
-    df = pd.read_csv(r"C:\Users\koolk\Documents\UW Freshman Year\CSE 163 Python\movies\movies.csv", encoding='ISO-8859-1')
+    df = pd.read_csv("movies.csv", encoding='ISO-8859-1')
     highest_and_lowest_rated_genres_over_the_years(df)
 
 
