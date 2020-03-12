@@ -1,9 +1,15 @@
+# CSE 163 Project, Authors: Karan Singh, Varun Venkatesh, Waiz Khan
+# This file creates two data visualizations on a movie dataset.
+# The first visualization is a graph of Movie Revenue by Country
+# The second visualization is a graph of GDP by Country
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
 
 def highest_grossing_movies_and_country_gdp(df, gdf, gdp_df):
+    # This method creates the two plots, the first being Movie Revenue by Country
+    # The second is a plot of GDP by Country
     g_min = df['gross'].min()
     g_max = df['gross'].max()
     fig, [ax1, ax2] = plt.subplots(1, ncols=2)
