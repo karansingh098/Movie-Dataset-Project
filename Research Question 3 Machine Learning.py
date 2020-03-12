@@ -47,7 +47,7 @@ def user_rating_to_genre(df):
     plt.title("Viewer Votes per Genre")
     plt.xlabel("Genre")
     plt.ylabel("Viewer Votes")
-    plot.set_xticklabels(rotation=30)
+    plot.set_xticklabels(rotation=45)
     plt.show()
 
 
