@@ -14,7 +14,8 @@ def select_features(df):
     relevant_features = cor_target[cor_target > .1]
     df = df.filter(list(relevant_features.index))
     corr_matrix = df.corr().abs()
-    upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(np.bool))
+    upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1)
+                                .astype(np.bool))
     to_drop = [column for column in upper.columns if any(upper[column] > 0.75)]
     df = df.drop(df[to_drop], axis=1)
     df['genre'] = genre
