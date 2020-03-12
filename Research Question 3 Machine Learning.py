@@ -1,19 +1,17 @@
 import numpy as np
 import pandas as pd
-import geopandas as gpd
-import math
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import mean_squared_error
+
 
 def select_features(df):
     genre = df['genre']
     cor = df.corr()
     cor_target = abs(cor['score'])
-    relevant_features = cor_target[cor_target>.1]
+    relevant_features = cor_target[cor_target > .1]
     df = df.filter(list(relevant_features.index))
     corr_matrix = df.corr().abs()
     upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(np.bool))
@@ -21,6 +19,7 @@ def select_features(df):
     df = df.drop(df[to_drop], axis=1)
     df['genre'] = genre
     return df
+
 
 def fit_and_predict_ratings(df, genre):
     df = df[df['genre'] == genre]
@@ -41,17 +40,20 @@ def fit_and_predict_ratings(df, genre):
         print("X=%s, Predicted=%s" % (Xnew[i], ynew[i]))
     return mean_squared_error(y_test, y_test_pred)
 
+
 def user_rating_to_genre(df):
-    df = df.groupby('genre', as_index = False).sum()
-    sns.catplot(x='genre', y='votes', data=df, kind='bar')
+    df = df.groupby('genre', as_index=False).sum()
+    plot = sns.catplot(x='genre', y='votes', data=df, kind='bar')
     plt.title("Viewer Votes per Genre")
     plt.xlabel("Genre")
     plt.ylabel("Viewer Votes")
+    plot.set_xticklabels(rotation=30)
     plt.show()
+
 
 def main():
     df = pd.read_csv("movies.csv", encoding='ISO-8859-1')
-    df = df.drop(columns = 'released')
+    df = df.drop(columns='released')
     df = select_features(df)
     print(fit_and_predict_ratings(df, 'Action'))
     user_rating_to_genre(df)
